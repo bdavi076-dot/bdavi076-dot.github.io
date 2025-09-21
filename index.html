@@ -217,73 +217,24 @@
             display: inline-block;
             cursor: pointer;
             transition: transform 0.3s ease;
+            width: 150px;
+            height: 150px;
+        }
+        
+        .gift-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
         }
         
         .gift-box:hover {
             transform: scale(1.05);
         }
         
-        .gift-body {
-            width: 120px;
-            height: 100px;
-            background: white;
-            border-radius: 10px;
-            position: relative;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .gift-lid {
-            width: 130px;
-            height: 25px;
-            background: white;
-            border-radius: 10px 10px 0 0;
-            position: absolute;
-            top: -25px;
-            left: -5px;
-        }
-        
-        .gift-bow {
-            position: absolute;
-            width: 100%;
-            height: 20px;
-            top: -15px;
-            left: 0;
-            z-index: 2;
-        }
-        
-        .gift-bow::before, .gift-bow::after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            background: #ff4d4d;
-            border-radius: 50%;
-            top: -15px;
-        }
-        
-        .gift-bow::before {
-            left: 25px;
-        }
-        
-        .gift-bow::after {
-            right: 25px;
-        }
-        
-        .gift-center {
-            position: absolute;
-            width: 30px;
-            height: 20px;
-            background: #ff4d4d;
-            border-radius: 5px;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 3;
-        }
-        
         .click-arrow {
             position: absolute;
-            right: -70px;
+            left: -70px;
             top: 50%;
             transform: translateY(-50%);
             color: white;
@@ -296,8 +247,8 @@
         }
         
         .click-arrow::after {
-            content: '→';
-            margin-left: 5px;
+            content: '←';
+            margin-right: 5px;
         }
         
         .roulette-container {
@@ -305,6 +256,7 @@
             margin: 30px auto;
             text-align: center;
             max-width: 400px;
+            position: relative;
         }
         
         .roulette-wheel {
@@ -467,11 +419,17 @@
             
             .click-arrow {
                 position: relative;
-                right: auto;
+                left: auto;
                 top: auto;
                 transform: none;
                 margin-top: 15px;
                 display: inline-block;
+            }
+            
+            .click-arrow::after {
+                content: '↑';
+                margin-right: 0;
+                margin-left: 5px;
             }
             
             .roulette-wheel {
@@ -524,7 +482,7 @@
             <!-- Passo 2: Animação -->
             <div class="quiz-step" id="step2">
                 <h2 class="quiz-question">Você deseja com ou sem animação?</h2>
-                <p class="quiz-description">Escolhendo essa opção, você decide se nos seus slides haverá uma animação ou não. Animações tornam a apresentação mais dinâmica и engajadora.</p>
+                <p class="quiz-description">Escolhendo essa opção, você decide se nos seus slides haverá uma animação ou não. Animações tornam a apresentação mais dinâmica e engajadora.</p>
                 
                 <div class="quiz-options">
                     <div class="quiz-option" data-value="sem">
@@ -599,19 +557,15 @@
             <!-- Presente com roleta -->
             <div class="gift-container">
                 <div class="gift-box" id="giftBox">
-                    <div class="gift-body">
-                        <div class="gift-lid"></div>
-                        <div class="gift-bow"></div>
-                        <div class="gift-center"></div>
-                    </div>
+                    <img src="https://img.freepik.com/psd-gratuitas/design-de-caixa-de-presente-colorida-de-aniversario_23-2150318126.jpg" alt="Presente de desconto">
                 </div>
                 <div class="click-arrow">Clique para ganhar desconto!</div>
             </div>
             
             <!-- Roleta de desconto -->
             <div class="roulette-container" id="rouletteContainer">
+                <div class="roulette-pointer"></div>
                 <div class="roulette-wheel" id="rouletteWheel">
-                    <div class="roulette-pointer"></div>
                     <!-- As seções serão adicionadas via JavaScript -->
                 </div>
                 <button class="spin-button" id="spinButton">Girar Roleta</button>
@@ -638,7 +592,7 @@
         
         <footer>
             <p>Os slides mais <strong>confiáveis</strong> e <strong>rápidos</strong> que você verá!</p>
-            <p class="copyright">© 2025 Slides do Bueno - Feito com <i class="fas fa-heart" style="color: #FF6584;"></i> para suas apresentações incríveis!</p>
+            <p class="copyright">© 2023 Slides do Bueno - Feito com <i class="fas fa-heart" style="color: #FF6584;"></i> para suas apresentações incríveis!</p>
         </footer>
     </div>
 
@@ -648,7 +602,7 @@
             const pricingOptions = {
                 '15': {
                     'sem-sem': { option: 'Opção 1', price: 'R$ 07,50', animation: 'Sem animação', revision: 'Sem revisão' },
-                    'sem-com': { option: 'Opção 2', price: 'R$ 12,50', animation: 'Com animação', revision: 'Com revisão' },
+                    'sem-com': { option: 'Opção 2', price: 'R$ 12,50', animation: 'Sem animação', revision: 'Com revisão' },
                     'com-sem': { option: 'Opção 3', price: 'R$ 12,50', animation: 'Com animação', revision: 'Sem revisão' },
                     'com-com': { option: 'Opção 4', price: 'R$ 17,50', animation: 'Com animação', revision: 'Com revisão' }
                 },
@@ -768,14 +722,13 @@
             
             // Configurar a roleta de desconto
             function initRoulette() {
-                // Criar seções da roleta (10%, 15%, 20%, 25%, 30%, 40%)
+                // Criar seções da roleta (apenas de 10% a 30%)
                 const sections = [
-                    { discount: '10%', color: '#FF6B6B', probability: 30 },
-                    { discount: '15%', color: '#FF8E53', probability: 25 },
+                    { discount: '10%', color: '#FF6B6B', probability: 40 },
+                    { discount: '15%', color: '#FF8E53', probability: 30 },
                     { discount: '20%', color: '#36D1DC', probability: 20 },
-                    { discount: '25%', color: '#5B86E5', probability: 15 },
-                    { discount: '30%', color: '#9C27B0', probability: 7 },
-                    { discount: '40%', color: '#FFD700', probability: 3 }
+                    { discount: '25%', color: '#5B86E5', probability: 7 },
+                    { discount: '30%', color: '#9C27B0', probability: 3 }
                 ];
                 
                 let currentAngle = 0;
@@ -785,7 +738,7 @@
                     const sectionEl = document.createElement('div');
                     sectionEl.className = 'roulette-section';
                     sectionEl.style.backgroundColor = section.color;
-                    sectionEl.style.transform = `rotate(${index * 60}deg)`;
+                    sectionEl.style.transform = `rotate(${index * 72}deg)`;
                     sectionEl.innerHTML = section.discount;
                     rouletteWheel.appendChild(sectionEl);
                 });
@@ -815,8 +768,8 @@
                         }
                     }
                     
-                    // Calcular o ângulo de parada (cada seção tem 60 graus)
-                    const targetAngle = 360 - (chosenIndex * 60) + 360 * 5; // 5 voltas completas + posição
+                    // Calcular o ângulo de parada (cada seção tem 72 graus - 360/5)
+                    const targetAngle = 360 - (chosenIndex * 72) + 360 * 5; // 5 voltas completas + posição
                     
                     // Girar a roleta
                     rouletteWheel.style.transition = 'transform 4s cubic-bezier(0.1, 0.1, 0.1, 1)';

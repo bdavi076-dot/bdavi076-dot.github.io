@@ -3,418 +3,393 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slides do Bueno - Os melhores slides pra você!</title>
+    <title>Slides do Bueno | Encontre o Plano Perfeito</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+        
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --accent: #36D1DC;
+            --dark: #1A1A2E;
+            --light: #F8F9FC;
         }
         
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: #333;
+            background: linear-gradient(135deg, #0F2027, #203A43, #2C5364);
+            color: var(--light);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 15px;
+            overflow-x: hidden;
         }
         
         .container {
-            max-width: 1100px;
+            max-width: 800px;
             width: 100%;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-            margin: 15px 0;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
-            color: white;
-            text-align: center;
-            padding: 30px 15px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-        
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.95;
-            max-width: 600px;
             margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 20px;
         }
         
         .logo {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 15px;
-            color: #ffffff;
+            color: var(--primary);
         }
         
-        .table-container {
-            overflow-x: auto;
-            padding: 20px 15px;
-            -webkit-overflow-scrolling: touch;
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 0 auto;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-            border-radius: 8px;
-            overflow: hidden;
-            min-width: 600px; /* Força scroll horizontal em mobile */
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
         }
         
-        th {
-            background: linear-gradient(135deg, #5D6975 0%, #3A4753 100%);
+        /* Questionário */
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .quiz-step {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .quiz-step.active {
+            display: block;
+        }
+        
+        .quiz-question {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .quiz-description {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent);
+        }
+        
+        .quiz-option.selected {
+            background: rgba(108, 99, 255, 0.2);
+            border-color: var(--primary);
+        }
+        
+        .quiz-option i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .quiz-btn {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             color: white;
-            padding: 16px 12px;
-            text-align: left;
+            border: none;
+            border-radius: 50px;
             font-weight: 600;
-            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
         
-        td {
-            padding: 14px 12px;
-            border-bottom: 1px solid #f0f0f0;
-            color: #444;
-            font-size: 0.9rem;
+        .quiz-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
         
-        tr:nth-child(even) {
-            background-color: #f8f9fa;
+        .quiz-btn.prev {
+            background: rgba(255, 255, 255, 0.1);
         }
         
-        tr:hover {
-            background-color: #e9ecef;
-        }
-        
-        .opcao {
-            font-weight: 600;
-            color: #4b6cb7;
+        /* Resultado */
+        .result-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
+            display: none;
+            animation: fadeIn 0.5s ease;
         }
         
-        .slides {
-            text-align: center;
-            font-weight: 600;
-            color: #5D6975;
-        }
-        
-        .animacao, .marca {
-            text-align: center;
-        }
-        
-        .sim {
-            color: #28a745;
-            font-weight: 600;
-        }
-        
-        .nao {
-            color: #dc3545;
-            font-weight: 600;
-        }
-        
-        .preco {
-            text-align: right;
-            font-weight: 700;
-            color: #4b6cb7;
-        }
-        
-        .cta-box {
-            background: linear-gradient(135deg, #5D6975 0%, #3A4753 100%);
-            color: white;
-            padding: 25px 15px;
-            text-align: center;
-            margin: 15px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-        }
-        
-        .cta-box h2 {
-            font-size: 1.5rem;
-            margin-bottom: 12px;
-        }
-        
-        .cta-box p {
+        .result-title {
+            font-size: 1.8rem;
             margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .result-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .result-features {
+            margin: 15px 0;
+        }
+        
+        .result-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .result-feature i {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+        
+        .result-price {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 20px 0;
+            color: var(--light);
         }
         
         .contact-buttons {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-top: 20px;
+            gap: 15px;
+            margin-top: 30px;
         }
         
         .contact-button {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 14px 20px;
-            background: #25D366;
-            color: white;
-            border-radius: 8px;
+            padding: 16px 25px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.2s ease;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-            font-size: 0.95rem;
-        }
-        
-        .contact-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
         }
         
         .contact-button.whatsapp {
-            background: #25D366;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
         }
         
         .contact-button.email {
-            background: #6c757d;
+            background: linear-gradient(135deg, #36D1DC, #5B86E5);
+            color: white;
         }
         
         .button-icon {
-            margin-right: 8px;
+            margin-right: 10px;
             font-size: 1.2rem;
         }
         
-        .footer {
-            padding: 25px 15px;
+        footer {
             text-align: center;
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: white;
-            font-size: 0.95rem;
+            padding: 30px 20px;
+            margin-top: 40px;
+            background: rgba(26, 26, 46, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .footer p {
-            margin: 8px 0;
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .guarantee {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin: 15px 0;
-        }
-        
-        .guarantee-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 12px;
-            border-radius: 8px;
-            text-align: center;
-        }
-        
-        .highlight {
-            background: #e9ecef;
-            padding: 3px 6px;
-            border-radius: 4px;
-            font-weight: 600;
-            color: #333;
-        }
-        
-        /* Media Query para tablets */
-        @media (min-width: 768px) {
-            .header {
-                padding: 40px 20px;
+        /* Responsividade */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
             }
             
-            .header h1 {
-                font-size: 2.8rem;
+            .quiz-options {
+                grid-template-columns: 1fr;
             }
             
-            .header p {
-                font-size: 1.3rem;
+            .quiz-navigation {
+                flex-direction: column;
+                gap: 10px;
             }
             
-            .contact-buttons {
-                flex-direction: row;
-                justify-content: center;
-            }
-            
-            .contact-button {
-                flex: 1;
-                max-width: 280px;
-            }
-            
-            .guarantee {
-                flex-direction: row;
-                justify-content: center;
-                gap: 15px;
-            }
-            
-            .guarantee-item {
-                flex: 1;
-                max-width: 250px;
-            }
-        }
-        
-        /* Media Query para desktops */
-        @media (min-width: 1024px) {
-            .container {
-                margin: 20px 0;
-            }
-            
-            .header h1 {
-                font-size: 3rem;
-            }
-            
-            table {
-                min-width: auto;
-            }
-            
-            th, td {
-                padding: 18px 15px;
-                font-size: 1rem;
-            }
-        }
-        
-        /* Melhorias de usabilidade para mobile */
-        .scroll-hint {
-            text-align: center;
-            padding: 10px 0;
-            color: #6c757d;
-            font-size: 0.9rem;
-            display: none;
-        }
-        
-        @media (max-width: 767px) {
-            .scroll-hint {
-                display: block;
+            .quiz-btn {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
+        <header>
             <div class="logo">
                 <i class="fas fa-presentation"></i>
             </div>
             <h1>Slides do Bueno</h1>
-            <p>Seus slides incríveis com a qualidade que você merece!</p>
+            <p class="tagline">Encontre o plano perfeito para suas necessidades</p>
+        </header>
+        
+        <div class="quiz-container">
+            <!-- Passo 1: Quantidade de Slides -->
+            <div class="quiz-step active" id="step1">
+                <h2 class="quiz-question">Quantos slides você precisa?</h2>
+                <p class="quiz-description">Selecione a quantidade de slides que sua apresentação requer</p>
+                
+                <div class="quiz-options">
+                    <div class="quiz-option" data-value="15">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>15 Slides</h3>
+                        <p>Ideal para apresentações curtas</p>
+                    </div>
+                    <div class="quiz-option" data-value="20">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>20 Slides</h3>
+                        <p>Perfeito para apresentações médias</p>
+                    </div>
+                    <div class="quiz-option" data-value="30">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>30 Slides</h3>
+                        <p>Excelente para apresentações completas</p>
+                    </div>
+                </div>
+                
+                <div class="quiz-navigation">
+                    <button class="quiz-btn prev" disabled>Anterior</button>
+                    <button class="quiz-btn next">Próxima</button>
+                </div>
+            </div>
+            
+            <!-- Passo 2: Animação -->
+            <div class="quiz-step" id="step2">
+                <h2 class="quiz-question">Você deseja com ou sem animação?</h2>
+                <p class="quiz-description">Escolhendo essa opção, você decide se nos seus slides haverá uma animação ou não. Animações tornam a apresentação mais dinâmica e engajadora.</p>
+                
+                <div class="quiz-options">
+                    <div class="quiz-option" data-value="sem">
+                        <i class="fas fa-times-circle"></i>
+                        <h3>Sem Animação</h3>
+                        <p>Slides estáticos e profissionais</p>
+                    </div>
+                    <div class="quiz-option" data-value="com">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Com Animação</h3>
+                        <p>Transições e efeitos especiais</p>
+                    </div>
+                </div>
+                
+                <div class="quiz-navigation">
+                    <button class="quiz-btn prev">Anterior</button>
+                    <button class="quiz-btn next">Próxima</button>
+                </div>
+            </div>
+            
+            <!-- Passo 3: Revisão -->
+            <div class="quiz-step" id="step3">
+                <h2 class="quiz-question">Você deseja fazer uma revisão antes de receber o produto?</h2>
+                <p class="quiz-description">Se marcar esta opção, poderá receber uma prévia do produto e opinar se está perfeito ou se precisa de alguma alteração. Garantia de satisfação total!</p>
+                
+                <div class="quiz-options">
+                    <div class="quiz-option" data-value="sem">
+                        <i class="fas fa-times-circle"></i>
+                        <h3>Sem Revisão</h3>
+                        <p>Receba o produto final diretamente</p>
+                    </div>
+                    <div class="quiz-option" data-value="com">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Com Revisão</h3>
+                        <p>Visualize e aprove antes do envio final</p>
+                    </div>
+                </div>
+                
+                <div class="quiz-navigation">
+                    <button class="quiz-btn prev">Anterior</button>
+                    <button class="quiz-btn next">Ver Resultado</button>
+                </div>
+            </div>
         </div>
         
-        <div class="scroll-hint">
-            <i class="fas fa-arrows-alt-h"></i> Deslize para ver a tabela completa
-        </div>
-        
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Opção</th>
-                        <th>Slides</th>
-                        <th>Animação</th>
-                        <th>Marca d'água</th>
-                        <th>Preço</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="opcao">Opção 1</td>
-                        <td class="slides">15 Slides</td>
-                        <td class="animacao nao">Não</td>
-                        <td class="marca sim">Sim</td>
-                        <td class="preco">R$ 07,50</td>
-                    </tr>
-                    <tr>
-                        <td class="opcao">Opção 2</td>
-                        <td class="slides">15 Slides</td>
-                        <td class="animacao sim">Sim</td>
-                        <td class="marca nao">Não</td>
-                        <td class="preco">R$ 12,50</td>
-                    </tr>
-                    <tr>
-                        <td class="opcao">Opção 3</td>
-                        <td class="slides">15 Slides</td>
-                        <td class="animacao sim">Sim</td>
-                        <td class="marca sim">Sim</td>
-                        <td class="preco">R$ 12,50</td>
-                    </tr>
-                    <tr>
-                        <td class="opcao">Opção 4</td>
-                        <td class="slides">15 Slides</td>
-                        <td class="animacao sim">Sim</td>
-                        <td class="marca nao">Não</td>
-                        <td class="preco">R$ 17,50</td>
-                    </tr>
-                    <tr>
-                        <td class="opcao">Opção 5</td>
-                        <td class="slides">20 Slides</td>
-                        <td class="animacao nao">Não</td>
-                        <td class="marca sim">Sim</td>
-                        <td class="preco">R$ 10,00</td>
-                    </tr>
-                    <tr>
-                        <td class="opcao">Opção 6</td>
-                        <td class="slides">20 Slides</td>
-                        <td class="animacao nao">Não</td>
-                        <td class="marca nao">Não</td>
-                        <td class="preco">R$ 15,00</td>
-                    </tr>
-                    <tr>
-                        <td class="opcao">Opção 7</td>
-                        <td class="slides">20 Slides</td>
-                        <td class="animacao sim">Sim</td>
-                        <td class="marca sim">Sim</td>
-                        <td class="preco">R$ 15,00</td>
-                    </tr>
-                    <tr>
-                        <td class="opcao">Opção 8</td>
-                        <td class="slides">20 Slides</td>
-                        <td class="animacao sim">Sim</td>
-                        <td class="marca nao">Não</td>
-                        <td class="preco">R$ 20,00</td>
-                    </tr>
-                    <tr>
-                        <td class="opcao">Opção 9</td>
-                        <td class="slides">30 Slides</td>
-                        <td class="animacao nao">Não</td>
-                        <td class="marca sim">Sim</td>
-                        <td class="preco">R$ 12,50</td>
-                    </tr>
-                    <tr>
-                        <td class="opcao">Opção 10</td>
-                        <td class="slides">30 Slides</td>
-                        <td class="animacao nao">Não</td>
-                        <td class="marca nao">Não</td>
-                        <td class="preco">R$ 17,50</td>
-                    </tr>
-                    <tr>
-                        <td class="opcao">Opção 11</td>
-                        <td class="slides">30 Slides</td>
-                        <td class="animacao sim">Sim</td>
-                        <td class="marca sim">Sim</td>
-                        <td class="preco">R$ 17,50</td>
-                    </tr>
-                    <tr>
-                        <td class="opcao">Opção 12</td>
-                        <td class="slides">30 Slides</td>
-                        <td class="animacao sim">Sim</td>
-                        <td class="marca nao">Não</td>
-                        <td class="preco">R$ 20,00</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <div class="cta-box">
-            <h2>Pronto para ter slides incríveis?</h2>
-            <p>Entre em contato agora mesmo e peça já o seu!</p>
+        <div class="result-container" id="resultContainer">
+            <h2 class="result-title">Plano Ideal para Você!</h2>
+            
+            <div class="result-card">
+                <h3 id="resultOption">Opção X: Y Slides</h3>
+                
+                <div class="result-features">
+                    <div class="result-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span id="resultSlides">Y Slides profissionais</span>
+                    </div>
+                    <div class="result-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span id="resultAnimation">Com/Sem animação</span>
+                    </div>
+                    <div class="result-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span id="resultRevision">Com/Sem revisão</span>
+                    </div>
+                </div>
+                
+                <div class="result-price" id="resultPrice">R$ 0,00</div>
+                
+                <p>Este plano foi selecionado com base nas suas preferências e é perfeito para suas necessidades!</p>
+            </div>
+            
+            <p>Entre em contato agora para finalizar seu pedido:</p>
             
             <div class="contact-buttons">
                 <a href="https://wa.me/5512997064160" class="contact-button whatsapp">
@@ -426,22 +401,130 @@
             </div>
         </div>
         
-        <div class="footer">
-            <div class="guarantee">
-                <div class="guarantee-item">
-                    <i class="fas fa-bolt"></i> Entrega Rápida
-                </div>
-                <div class="guarantee-item">
-                    <i class="fas fa-shield-alt"></i> Qualidade Garantida
-                </div>
-                <div class="guarantee-item">
-                    <i class="fas fa-smile"></i> Satisfação Garantida
-                </div>
-            </div>
-            
-            <p>Os slides mais <span class="highlight">confiáveis</span> e <span class="highlight">rápidos</span> que você verá!</p>
-            <p>© 2023 Slides do Bueno - Feito com <i class="fas fa-heart" style="color: #e74c3c;"></i> para seus presentations incríveis!</p>
-        </div>
+        <footer>
+            <p>Os slides mais <strong>confiáveis</strong> e <strong>rápidos</strong> que você verá!</p>
+            <p class="copyright">© 2023 Slides do Bueno - Feito com <i class="fas fa-heart" style="color: #FF6584;"></i> para suas apresentações incríveis!</p>
+        </footer>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configuração das opções de preços
+            const pricingOptions = {
+                '15': {
+                    'sem-sem': { option: 'Opção 2', price: 'R$ 12,50', animation: 'Sem animação', revision: 'Sem revisão' },
+                    'sem-com': { option: 'Opção 1', price: 'R$ 07,50', animation: 'Sem animação', revision: 'Com revisão' },
+                    'com-sem': { option: 'Opção 4', price: 'R$ 17,50', animation: 'Com animação', revision: 'Sem revisão' },
+                    'com-com': { option: 'Opção 3', price: 'R$ 12,50', animation: 'Com animação', revision: 'Com revisão' }
+                },
+                '20': {
+                    'sem-sem': { option: 'Opção 6', price: 'R$ 15,00', animation: 'Sem animação', revision: 'Sem revisão' },
+                    'sem-com': { option: 'Opção 5', price: 'R$ 10,00', animation: 'Sem animação', revision: 'Com revisão' },
+                    'com-sem': { option: 'Opção 8', price: 'R$ 20,00', animation: 'Com animação', revision: 'Sem revisão' },
+                    'com-com': { option: 'Opção 7', price: 'R$ 15,00', animation: 'Com animação', revision: 'Com revisão' }
+                },
+                '30': {
+                    'sem-sem': { option: 'Opção 10', price: 'R$ 17,50', animation: 'Sem animação', revision: 'Sem revisão' },
+                    'sem-com': { option: 'Opção 9', price: 'R$ 12,50', animation: 'Sem animação', revision: 'Com revisão' },
+                    'com-sem': { option: 'Opção 12', price: 'R$ 20,00', animation: 'Com animação', revision: 'Sem revisão' },
+                    'com-com': { option: 'Opção 11', price: 'R$ 17,50', animation: 'Com animação', revision: 'Com revisão' }
+                }
+            };
+            
+            // Elementos do DOM
+            const quizSteps = document.querySelectorAll('.quiz-step');
+            const quizOptions = document.querySelectorAll('.quiz-option');
+            const prevButtons = document.querySelectorAll('.quiz-btn.prev');
+            const nextButtons = document.querySelectorAll('.quiz-btn.next');
+            const resultContainer = document.getElementById('resultContainer');
+            
+            // Respostas do usuário
+            let userAnswers = {
+                slides: null,
+                animation: null,
+                revision: null
+            };
+            
+            // Configurar eventos para as opções do questionário
+            quizOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const step = this.closest('.quiz-step');
+                    const options = step.querySelectorAll('.quiz-option');
+                    
+                    // Remover seleção anterior
+                    options.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Adicionar seleção atual
+                    this.classList.add('selected');
+                    
+                    // Habilitar botão próximo
+                    const nextBtn = step.querySelector('.quiz-btn.next');
+                    nextBtn.disabled = false;
+                });
+            });
+            
+            // Configurar eventos para os botões de navegação
+            nextButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const currentStep = this.closest('.quiz-step');
+                    const currentStepId = currentStep.id;
+                    const selectedOption = currentStep.querySelector('.quiz-option.selected');
+                    
+                    if (selectedOption) {
+                        // Salvar resposta
+                        if (currentStepId === 'step1') {
+                            userAnswers.slides = selectedOption.dataset.value;
+                        } else if (currentStepId === 'step2') {
+                            userAnswers.animation = selectedOption.dataset.value;
+                        } else if (currentStepId === 'step3') {
+                            userAnswers.revision = selectedOption.dataset.value;
+                        }
+                        
+                        // Avançar para o próximo passo ou mostrar resultado
+                        if (currentStepId === 'step3') {
+                            showResult();
+                        } else {
+                            const nextStep = currentStep.nextElementSibling;
+                            currentStep.classList.remove('active');
+                            nextStep.classList.add('active');
+                        }
+                    }
+                });
+            });
+            
+            prevButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const currentStep = this.closest('.quiz-step');
+                    const prevStep = currentStep.previousElementSibling;
+                    
+                    if (prevStep) {
+                        currentStep.classList.remove('active');
+                        prevStep.classList.add('active');
+                    }
+                });
+            });
+            
+            // Mostrar resultado baseado nas respostas
+            function showResult() {
+                const { slides, animation, revision } = userAnswers;
+                const optionKey = `${animation}-${revision}`;
+                const selectedOption = pricingOptions[slides][optionKey];
+                
+                // Atualizar informações no resultado
+                document.getElementById('resultOption').textContent = `${selectedOption.option}: ${slides} Slides`;
+                document.getElementById('resultSlides').textContent = `${slides} Slides profissionais`;
+                document.getElementById('resultAnimation').textContent = selectedOption.animation;
+                document.getElementById('resultRevision').textContent = selectedOption.revision;
+                document.getElementById('resultPrice').textContent = selectedOption.price;
+                
+                // Mostrar container de resultado
+                document.querySelector('.quiz-container').style.display = 'none';
+                resultContainer.style.display = 'block';
+                
+                // Rolar suavemente para o resultado
+                resultContainer.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    </script>
 </body>
 </html>

@@ -205,6 +205,193 @@
             color: var(--light);
         }
         
+        /* Presente e Roleta */
+        .gift-container {
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .gift-box {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .gift-box:hover {
+            transform: scale(1.05);
+        }
+        
+        .gift-body {
+            width: 120px;
+            height: 100px;
+            background: white;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gift-lid {
+            width: 130px;
+            height: 25px;
+            background: white;
+            border-radius: 10px 10px 0 0;
+            position: absolute;
+            top: -25px;
+            left: -5px;
+        }
+        
+        .gift-bow {
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            top: -15px;
+            left: 0;
+            z-index: 2;
+        }
+        
+        .gift-bow::before, .gift-bow::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: #ff4d4d;
+            border-radius: 50%;
+            top: -15px;
+        }
+        
+        .gift-bow::before {
+            left: 25px;
+        }
+        
+        .gift-bow::after {
+            right: 25px;
+        }
+        
+        .gift-center {
+            position: absolute;
+            width: 30px;
+            height: 20px;
+            background: #ff4d4d;
+            border-radius: 5px;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+        
+        .click-arrow {
+            position: absolute;
+            right: -70px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: var(--primary);
+            padding: 8px 15px;
+            border-radius: 20px;
+            animation: bounce 2s infinite;
+        }
+        
+        .click-arrow::after {
+            content: '→';
+            margin-left: 5px;
+        }
+        
+        .roulette-container {
+            display: none;
+            margin: 30px auto;
+            text-align: center;
+            max-width: 400px;
+        }
+        
+        .roulette-wheel {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            margin: 0 auto 20px;
+            border: 10px solid #ff4d4d;
+            border-radius: 50%;
+            overflow: hidden;
+            transition: transform 4s cubic-bezier(0.1, 0.1, 0.1, 1);
+            transform: rotate(0deg);
+        }
+        
+        .roulette-section {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            transform-origin: bottom right;
+            left: 0;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .roulette-pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 30px solid #ff4d4d;
+            z-index: 10;
+        }
+        
+        .spin-button {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .spin-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .discount-result {
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .discount-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #FFD700;
+            margin: 10px 0;
+        }
+        
+        .print-message {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #FFD700;
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+        
         .contact-buttons {
             display: flex;
             flex-direction: column;
@@ -253,6 +440,12 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(-50%); }
+            40% { transform: translateY(-60%); }
+            60% { transform: translateY(-55%); }
+        }
+        
         /* Responsividade */
         @media (max-width: 600px) {
             h1 {
@@ -270,6 +463,20 @@
             
             .quiz-btn {
                 width: 100%;
+            }
+            
+            .click-arrow {
+                position: relative;
+                right: auto;
+                top: auto;
+                transform: none;
+                margin-top: 15px;
+                display: inline-block;
+            }
+            
+            .roulette-wheel {
+                width: 250px;
+                height: 250px;
             }
         }
     </style>
@@ -317,7 +524,7 @@
             <!-- Passo 2: Animação -->
             <div class="quiz-step" id="step2">
                 <h2 class="quiz-question">Você deseja com ou sem animação?</h2>
-                <p class="quiz-description">Escolhendo essa opção, você decide se nos seus slides haverá uma animação ou não. Animações tornam a apresentação mais dinâmica e engajadora.</p>
+                <p class="quiz-description">Escolhendo essa opção, você decide se nos seus slides haverá uma animação ou não. Animações tornam a apresentação mais dinâmica и engajadora.</p>
                 
                 <div class="quiz-options">
                     <div class="quiz-option" data-value="sem">
@@ -389,6 +596,34 @@
                 <p>Este plano foi selecionado com base nas suas preferências e é perfeito para suas necessidades!</p>
             </div>
             
+            <!-- Presente com roleta -->
+            <div class="gift-container">
+                <div class="gift-box" id="giftBox">
+                    <div class="gift-body">
+                        <div class="gift-lid"></div>
+                        <div class="gift-bow"></div>
+                        <div class="gift-center"></div>
+                    </div>
+                </div>
+                <div class="click-arrow">Clique para ganhar desconto!</div>
+            </div>
+            
+            <!-- Roleta de desconto -->
+            <div class="roulette-container" id="rouletteContainer">
+                <div class="roulette-wheel" id="rouletteWheel">
+                    <div class="roulette-pointer"></div>
+                    <!-- As seções serão adicionadas via JavaScript -->
+                </div>
+                <button class="spin-button" id="spinButton">Girar Roleta</button>
+                
+                <div class="discount-result" id="discountResult">
+                    <h3>Parabéns!</h3>
+                    <div class="discount-amount" id="discountAmount">10%</div>
+                    <p>de desconto na sua primeira compra!</p>
+                    <div class="print-message">Tire um print para comprovar seu desconto!!!</div>
+                </div>
+            </div>
+            
             <p>Entre em contato agora para finalizar seu pedido:</p>
             
             <div class="contact-buttons">
@@ -403,31 +638,31 @@
         
         <footer>
             <p>Os slides mais <strong>confiáveis</strong> e <strong>rápidos</strong> que você verá!</p>
-            <p class="copyright">© 2023 Slides do Bueno - Feito com <i class="fas fa-heart" style="color: #FF6584;"></i> para suas apresentações incríveis!</p>
+            <p class="copyright">© 2025 Slides do Bueno - Feito com <i class="fas fa-heart" style="color: #FF6584;"></i> para suas apresentações incríveis!</p>
         </footer>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Configuração das opções de preços
+            // Configuração das opções de preços CORRIGIDA
             const pricingOptions = {
                 '15': {
-                    'sem-sem': { option: 'Opção 2', price: 'R$ 12,50', animation: 'Sem animação', revision: 'Sem revisão' },
-                    'sem-com': { option: 'Opção 1', price: 'R$ 07,50', animation: 'Sem animação', revision: 'Com revisão' },
-                    'com-sem': { option: 'Opção 4', price: 'R$ 17,50', animation: 'Com animação', revision: 'Sem revisão' },
-                    'com-com': { option: 'Opção 3', price: 'R$ 12,50', animation: 'Com animação', revision: 'Com revisão' }
+                    'sem-sem': { option: 'Opção 1', price: 'R$ 07,50', animation: 'Sem animação', revision: 'Sem revisão' },
+                    'sem-com': { option: 'Opção 2', price: 'R$ 12,50', animation: 'Com animação', revision: 'Com revisão' },
+                    'com-sem': { option: 'Opção 3', price: 'R$ 12,50', animation: 'Com animação', revision: 'Sem revisão' },
+                    'com-com': { option: 'Opção 4', price: 'R$ 17,50', animation: 'Com animação', revision: 'Com revisão' }
                 },
                 '20': {
-                    'sem-sem': { option: 'Opção 6', price: 'R$ 15,00', animation: 'Sem animação', revision: 'Sem revisão' },
-                    'sem-com': { option: 'Opção 5', price: 'R$ 10,00', animation: 'Sem animação', revision: 'Com revisão' },
-                    'com-sem': { option: 'Opção 8', price: 'R$ 20,00', animation: 'Com animação', revision: 'Sem revisão' },
-                    'com-com': { option: 'Opção 7', price: 'R$ 15,00', animation: 'Com animação', revision: 'Com revisão' }
+                    'sem-sem': { option: 'Opção 5', price: 'R$ 10,00', animation: 'Sem animação', revision: 'Sem revisão' },
+                    'sem-com': { option: 'Opção 6', price: 'R$ 15,00', animation: 'Sem animação', revision: 'Com revisão' },
+                    'com-sem': { option: 'Opção 7', price: 'R$ 15,00', animation: 'Com animação', revision: 'Sem revisão' },
+                    'com-com': { option: 'Opção 8', price: 'R$ 20,00', animation: 'Com animação', revision: 'Com revisão' }
                 },
                 '30': {
-                    'sem-sem': { option: 'Opção 10', price: 'R$ 17,50', animation: 'Sem animação', revision: 'Sem revisão' },
-                    'sem-com': { option: 'Opção 9', price: 'R$ 12,50', animation: 'Sem animação', revision: 'Com revisão' },
-                    'com-sem': { option: 'Opção 12', price: 'R$ 20,00', animation: 'Com animação', revision: 'Sem revisão' },
-                    'com-com': { option: 'Opção 11', price: 'R$ 17,50', animation: 'Com animação', revision: 'Com revisão' }
+                    'sem-sem': { option: 'Opção 9', price: 'R$ 12,50', animation: 'Sem animação', revision: 'Sem revisão' },
+                    'sem-com': { option: 'Opção 10', price: 'R$ 17,50', animation: 'Sem animação', revision: 'Com revisão' },
+                    'com-sem': { option: 'Opção 11', price: 'R$ 17,50', animation: 'Com animação', revision: 'Sem revisão' },
+                    'com-com': { option: 'Opção 12', price: 'R$ 25,00', animation: 'Com animação', revision: 'Com revisão' }
                 }
             };
             
@@ -437,6 +672,12 @@
             const prevButtons = document.querySelectorAll('.quiz-btn.prev');
             const nextButtons = document.querySelectorAll('.quiz-btn.next');
             const resultContainer = document.getElementById('resultContainer');
+            const giftBox = document.getElementById('giftBox');
+            const rouletteContainer = document.getElementById('rouletteContainer');
+            const rouletteWheel = document.getElementById('rouletteWheel');
+            const spinButton = document.getElementById('spinButton');
+            const discountResult = document.getElementById('discountResult');
+            const discountAmount = document.getElementById('discountAmount');
             
             // Respostas do usuário
             let userAnswers = {
@@ -524,6 +765,74 @@
                 // Rolar suavemente para o resultado
                 resultContainer.scrollIntoView({ behavior: 'smooth' });
             }
+            
+            // Configurar a roleta de desconto
+            function initRoulette() {
+                // Criar seções da roleta (10%, 15%, 20%, 25%, 30%, 40%)
+                const sections = [
+                    { discount: '10%', color: '#FF6B6B', probability: 30 },
+                    { discount: '15%', color: '#FF8E53', probability: 25 },
+                    { discount: '20%', color: '#36D1DC', probability: 20 },
+                    { discount: '25%', color: '#5B86E5', probability: 15 },
+                    { discount: '30%', color: '#9C27B0', probability: 7 },
+                    { discount: '40%', color: '#FFD700', probability: 3 }
+                ];
+                
+                let currentAngle = 0;
+                
+                // Adicionar seções à roleta
+                sections.forEach((section, index) => {
+                    const sectionEl = document.createElement('div');
+                    sectionEl.className = 'roulette-section';
+                    sectionEl.style.backgroundColor = section.color;
+                    sectionEl.style.transform = `rotate(${index * 60}deg)`;
+                    sectionEl.innerHTML = section.discount;
+                    rouletteWheel.appendChild(sectionEl);
+                });
+                
+                // Evento para abrir a roleta ao clicar no presente
+                giftBox.addEventListener('click', function() {
+                    rouletteContainer.style.display = 'block';
+                    this.style.display = 'none';
+                    document.querySelector('.click-arrow').style.display = 'none';
+                });
+                
+                // Evento para girar a roleta
+                spinButton.addEventListener('click', function() {
+                    // Desabilitar o botão durante a rotação
+                    spinButton.disabled = true;
+                    
+                    // Escolher um desconto aleatório com probabilidades diferentes
+                    let random = Math.random() * 100;
+                    let chosenIndex = 0;
+                    let probabilitySum = 0;
+                    
+                    for (let i = 0; i < sections.length; i++) {
+                        probabilitySum += sections[i].probability;
+                        if (random <= probabilitySum) {
+                            chosenIndex = i;
+                            break;
+                        }
+                    }
+                    
+                    // Calcular o ângulo de parada (cada seção tem 60 graus)
+                    const targetAngle = 360 - (chosenIndex * 60) + 360 * 5; // 5 voltas completas + posição
+                    
+                    // Girar a roleta
+                    rouletteWheel.style.transition = 'transform 4s cubic-bezier(0.1, 0.1, 0.1, 1)';
+                    rouletteWheel.style.transform = `rotate(${targetAngle}deg)`;
+                    
+                    // Mostrar o resultado após a rotação
+                    setTimeout(function() {
+                        discountAmount.textContent = sections[chosenIndex].discount;
+                        discountResult.style.display = 'block';
+                        spinButton.style.display = 'none';
+                    }, 4200);
+                });
+            }
+            
+            // Inicializar a roleta quando a página carregar
+            initRoulette();
         });
     </script>
 </body>

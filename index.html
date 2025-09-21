@@ -20,7 +20,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
         }
         
         .container {
@@ -28,82 +28,69 @@
             width: 100%;
             background: white;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             overflow: hidden;
-            margin: 20px 0;
+            margin: 15px 0;
         }
         
         .header {
             background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
             color: white;
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 15px;
             position: relative;
             overflow: hidden;
         }
         
-        .header::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
-            transform: rotate(30deg);
-        }
-        
         .header h1 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            font-weight: 800;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            position: relative;
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            font-weight: 700;
         }
         
         .header p {
-            font-size: 1.4rem;
+            font-size: 1.1rem;
             opacity: 0.95;
             max-width: 600px;
             margin: 0 auto;
-            position: relative;
         }
         
         .logo {
-            font-size: 4rem;
-            margin-bottom: 20px;
+            font-size: 3rem;
+            margin-bottom: 15px;
             color: #ffffff;
-            text-shadow: 0 0 10px rgba(0,0,0,0.2);
-            position: relative;
         }
         
         .table-container {
             overflow-x: auto;
-            padding: 30px 20px;
+            padding: 20px 15px;
+            -webkit-overflow-scrolling: touch;
         }
         
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 0 auto;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
             overflow: hidden;
+            min-width: 600px; /* Força scroll horizontal em mobile */
         }
         
         th {
             background: linear-gradient(135deg, #5D6975 0%, #3A4753 100%);
             color: white;
-            padding: 20px;
+            padding: 16px 12px;
             text-align: left;
-            font-weight: 700;
-            font-size: 1.1rem;
+            font-weight: 600;
+            font-size: 0.95rem;
         }
         
         td {
-            padding: 18px 20px;
+            padding: 14px 12px;
             border-bottom: 1px solid #f0f0f0;
             color: #444;
+            font-size: 0.9rem;
         }
         
         tr:nth-child(even) {
@@ -112,14 +99,12 @@
         
         tr:hover {
             background-color: #e9ecef;
-            transition: all 0.2s ease;
         }
         
         .opcao {
-            font-weight: 700;
+            font-weight: 600;
             color: #4b6cb7;
             text-align: center;
-            font-size: 1.1rem;
         }
         
         .slides {
@@ -134,8 +119,7 @@
         
         .sim {
             color: #28a745;
-            font-weight: 700;
-            font-size: 1.1rem;
+            font-weight: 600;
         }
         
         .nao {
@@ -145,52 +129,54 @@
         
         .preco {
             text-align: right;
-            font-weight: 800;
+            font-weight: 700;
             color: #4b6cb7;
-            font-size: 1.2rem;
         }
         
         .cta-box {
             background: linear-gradient(135deg, #5D6975 0%, #3A4753 100%);
             color: white;
-            padding: 30px;
+            padding: 25px 15px;
             text-align: center;
-            margin: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
         }
         
         .cta-box h2 {
-            font-size: 2rem;
-            margin-bottom: 15px;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+        
+        .cta-box p {
+            margin-bottom: 20px;
         }
         
         .contact-buttons {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 25px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
         }
         
         .contact-button {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 16px 30px;
+            padding: 14px 20px;
             background: #25D366;
             color: white;
-            border-radius: 50px;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            font-size: 0.95rem;
         }
         
         .contact-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
         }
         
         .contact-button.whatsapp {
@@ -202,79 +188,113 @@
         }
         
         .button-icon {
-            margin-right: 10px;
-            font-size: 1.4rem;
+            margin-right: 8px;
+            font-size: 1.2rem;
         }
         
         .footer {
-            padding: 30px;
+            padding: 25px 15px;
             text-align: center;
             background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             color: white;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
         }
         
         .footer p {
-            margin: 10px 0;
+            margin: 8px 0;
         }
         
         .guarantee {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 12px;
+            margin: 15px 0;
         }
         
         .guarantee-item {
             background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            min-width: 200px;
+            padding: 12px;
+            border-radius: 8px;
             text-align: center;
-            backdrop-filter: blur(5px);
-        }
-        
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.2rem;
-            }
-            
-            th, td {
-                padding: 15px 10px;
-                font-size: 14px;
-            }
-            
-            .contact-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .contact-button {
-                width: 90%;
-            }
-            
-            .guarantee {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .guarantee-item {
-                width: 90%;
-            }
-        }
-        
-        .emoji {
-            font-size: 1.2rem;
-            margin: 0 3px;
         }
         
         .highlight {
             background: #e9ecef;
             padding: 3px 6px;
-            border-radius: 5px;
-            font-weight: 700;
+            border-radius: 4px;
+            font-weight: 600;
             color: #333;
+        }
+        
+        /* Media Query para tablets */
+        @media (min-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.8rem;
+            }
+            
+            .header p {
+                font-size: 1.3rem;
+            }
+            
+            .contact-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+            
+            .contact-button {
+                flex: 1;
+                max-width: 280px;
+            }
+            
+            .guarantee {
+                flex-direction: row;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .guarantee-item {
+                flex: 1;
+                max-width: 250px;
+            }
+        }
+        
+        /* Media Query para desktops */
+        @media (min-width: 1024px) {
+            .container {
+                margin: 20px 0;
+            }
+            
+            .header h1 {
+                font-size: 3rem;
+            }
+            
+            table {
+                min-width: auto;
+            }
+            
+            th, td {
+                padding: 18px 15px;
+                font-size: 1rem;
+            }
+        }
+        
+        /* Melhorias de usabilidade para mobile */
+        .scroll-hint {
+            text-align: center;
+            padding: 10px 0;
+            color: #6c757d;
+            font-size: 0.9rem;
+            display: none;
+        }
+        
+        @media (max-width: 767px) {
+            .scroll-hint {
+                display: block;
+            }
         }
     </style>
 </head>
@@ -286,6 +306,10 @@
             </div>
             <h1>Slides do Bueno</h1>
             <p>Seus slides incríveis com a qualidade que você merece!</p>
+        </div>
+        
+        <div class="scroll-hint">
+            <i class="fas fa-arrows-alt-h"></i> Deslize para ver a tabela completa
         </div>
         
         <div class="table-container">

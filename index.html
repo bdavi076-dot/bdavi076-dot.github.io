@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slides Personalizados do Bueno</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .logo {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: #f1c40f;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            padding: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        th {
+            background-color: #2c3e50;
+            color: white;
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #e0e0e0;
+            color: #333;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover {
+            background-color: #f1f8ff;
+        }
+        
+        .opcao {
+            font-weight: 600;
+            color: #2c3e50;
+            text-align: center;
+        }
+        
+        .slides {
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .animacao, .marca {
+            text-align: center;
+        }
+        
+        .sim {
+            color: #27ae60;
+            font-weight: 600;
+        }
+        
+        .nao {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+        
+        .preco {
+            text-align: right;
+            font-weight: 700;
+            color: #2980b9;
+        }
+        
+        .footer {
+            padding: 25px;
+            text-align: center;
+            background-color: #f8f9fa;
+            color: #6c757d;
+            font-size: 1rem;
+        }
+        
+        .share-section {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .share-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .share-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            background: #3498db;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .share-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .share-button.whatsapp {
+            background: #25D366;
+        }
+        
+        .share-button.email {
+            background: #3498db;
+        }
+        
+        .share-button.link {
+            background: #9b59b6;
+        }
+        
+        .button-icon {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .info-box {
+            background: #e1f5fe;
+            border-left: 4px solid #0288d1;
+            padding: 15px;
+            margin: 20px;
+            border-radius: 4px;
+        }
+        
+        .github-guide {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            max-width: 1000px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .github-guide h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        
+        .step {
+            flex-basis: calc(50% - 20px);
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .step-number {
+            background: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            th, td {
+                padding: 12px 10px;
+                font-size: 14px;
+            }
+            
+            .share-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .share-button {
+                width: 80%;
+            }
+            
+            .step {
+                flex-basis: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-presentation"></i>
+            </div>
+            <h1>Loja de Slides Personalizados do Bueno</h1>
+            <p>Aqui está o catálogo de slides!!!</p>
+        </div>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Opção</th>
+                        <th>Slides</th>
+                        <th>Animação</th>
+                        <th>Marca d'água</th>
+                        <th>Preço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="opcao">Opção 1</td>
+                        <td class="slides">15 Slides</td>
+                        <td class="animacao nao">Não</td>
+                        <td class="marca sim">Sim</td>
+                        <td class="preco">R$ 07,50</td>
+                    </tr>
+                    <tr>
+                        <td class="opcao">Opção 2</td>
+                        <td class="slides">15 Slides</td>
+                        <td class="animacao sim">Sim</td>
+                        <td class="marca nao">Não</td>
+                        <td class="preco">R$ 12,50</td>
+                    </tr>
+                    <tr>
+                        <td class="opcao">Opção 3</td>
+                        <td class="slides">15 Slides</td>
+                        <td class="animacao sim">Sim</td>
+                        <td class="marca sim">Sim</td>
+                        <td class="preco">R$ 12,50</td>
+                    </tr>
+                    <tr>
+                        <td class="opcao">Opção 4</td>
+                        <td class="slides">15 Slides</td>
+                        <td class="animacao sim">Sim</td>
+                        <td class="marca nao">Não</td>
+                        <td class="preco">R$ 17,50</td>
+                    </tr>
+                    <tr>
+                        <td class="opcao">Opção 5</td>
+                        <td class="slides">20 Slides</td>
+                        <td class="animacao nao">Não</td>
+                        <td class="marca sim">Sim</td>
+                        <td class="preco">R$ 10,00</td>
+                    </tr>
+                    <tr>
+                        <td class="opcao">Opção 6</td>
+                        <td class="slides">20 Slides</td>
+                        <td class="animacao nao">Não</td>
+                        <td class="marca nao">Não</td>
+                        <td class="preco">R$ 15,00</td>
+                    </tr>
+                    <tr>
+                        <td class="opcao">Opção 7</td>
+                        <td class="slides">20 Slides</td>
+                        <td class="animacao sim">Sim</td>
+                        <td class="marca sim">Sim</td>
+                        <td class="preco">R$ 15,00</td>
+                    </tr>
+                    <tr>
+                        <td class="opcao">Opção 8</td>
+                        <td class="slides">20 Slides</td>
+                        <td class="animacao sim">Sim</td>
+                        <td class="marca nao">Não</td>
+                        <td class="preco">R$ 20,00</td>
+                    </tr>
+                    <tr>
+                        <td class="opcao">Opção 9</td>
+                        <td class="slides">30 Slides</td>
+                        <td class="animacao nao">Não</td>
+                        <td class="marca sim">Sim</td>
+                        <td class="preco">R$ 12,50</td>
+                    </tr>
+                    <tr>
+                        <td class="opcao">Opção 10</td>
+                        <td class="slides">30 Slides</td>
+                        <td class="animacao nao">Não</td>
+                        <td class="marca nao">Não</td>
+                        <td class="preco">R$ 17,50</td>
+                    </tr>
+                    <tr>
+                        <td class="opcao">Opção 11</td>
+                        <td class="slides">30 Slides</td>
+                        <td class="animacao sim">Sim</td>
+                        <td class="marca sim">Sim</td>
+                        <td class="preco">R$ 17,50</td>
+                    </tr>
+                    <tr>
+                        <td class="opcao">Opção 12</td>
+                        <td class="slides">30 Slides</td>
+                        <td class="animacao sim">Sim</td>
+                        <td class="marca nao">Não</td>
+                        <td class="preco">R$ 20,00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="info-box">
+            <p><strong>Como fazer seu pedido:</strong> Entre em contato pelo WhatsApp informando a opção desejada e detalhes do seu projeto.</p>
+        </div>
+        
+        <div class="share-section">
+            <h3 class="share-title">Compartilhe esta tabela de preços</h3>
+            <div class="share-buttons">
+                <a href="#" class="share-button whatsapp">
+                    <i class="fab fa-whatsapp button-icon"></i> WhatsApp
+                </a>
+                <a href="#" class="share-button email">
+                    <i class="fas fa-envelope button-icon"></i> E-mail
+                </a>
+                <a href="#" class="share-button link">
+                    <i class="fas fa-link button-icon"></i> Copiar Link
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2023 Loja de Slides Personalizados do Bueno - Todos os direitos reservados</p>
+            <p>Entre em contato: contato@slidesbueno.com.br | (11) 99999-9999</p>
+        </div>
+    </div>
+
+    <div class="github-guide">
+        <h2>Como colocar esta página no GitHub Pages</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <p>Crie uma conta no GitHub (se ainda não tiver)</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <p>Crie um novo repositório com o nome "seuusuario.github.io" (substitua "seuusuario" pelo seu nome de usuário)</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <p>Faça upload deste arquivo HTML para o repositório (nomeie como "index.html")</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <p>Vá nas configurações do repositório, selecione a opção GitHub Pages e escolha o branch principal</p>
+            </div>
+            <div class="step">
+                <div class="step-number">5</div>
+                <p>Pronto! Sua página estará disponível em https://seuusuario.github.io</p>
+            </div>
+            <div class="step">
+                <div class="step-number">6</div>
+                <p>Compartilhe este link com seus clientes</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Script para funcionalidade de compartilhamento
+        document.addEventListener('DOMContentLoaded', function() {
+            // Compartilhar via WhatsApp
+            document.querySelector('.share-button.whatsapp').addEventListener('click', function(e) {
+                e.preventDefault();
+                const text = 'Confira a tabela de preços da Loja de Slides Personalizados do Bueno!';
+                const url = encodeURIComponent(window.location.href);
+                window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
+            });
+            
+            // Compartilhar via E-mail
+            document.querySelector('.share-button.email').addEventListener('click', function(e) {
+                e.preventDefault();
+                const subject = 'Tabela de Preços - Loja de Slides do Bueno';
+                const body = 'Confira a tabela de preços da Loja de Slides Personalizados do Bueno: ' + window.location.href;
+                window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            });
+            
+            // Copiar link
+            document.querySelector('.share-button.link').addEventListener('click', function(e) {
+                e.preventDefault();
+                navigator.clipboard.writeText(window.location.href).then(function() {
+                    alert('Link copiado para a área de transferência!');
+                }, function() {
+                    alert('Falha ao copiar o link. Tente novamente.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

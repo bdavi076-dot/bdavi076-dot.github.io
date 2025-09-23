@@ -3,789 +3,762 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slides do Bueno | Encontre o Plano Perfeito</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>UpgradeStream - Apps Premium Acessíveis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', sans-serif;
-        }
-        
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
-        
         :root {
-            --primary: #6C63FF;
-            --secondary: #FF6584;
-            --accent: #36D1DC;
-            --dark: #1A1A2E;
-            --light: #F8F9FC;
+            --primary: #1a1f36;    /* Azul escuro mais intenso */
+            --secondary: #2d3748;  /* Cinza azulado escuro */
+            --accent: #e53e3e;     /* Vermelho vibrante */
+            --light: #2d3748;      /* Fundo mais escuro */
+            --dark: #f7fafc;       /* Texto claro */
+            --success: #38a169;    /* Verde */
+            --card-bg: #2d3748;    /* Fundo dos cards */
         }
         
         body {
-            background: linear-gradient(135deg, #0F2027, #203A43, #2C5364);
-            color: var(--light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a202c;
+            color: var(--dark);
             min-height: 100vh;
-            overflow-x: hidden;
+            padding-bottom: 60px; /* Espaço para o carrinho flutuante */
         }
         
-        .container {
-            max-width: 800px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            text-align: center;
-            padding: 30px 20px;
-        }
-        
-        .logo {
-            font-size: 3.5rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .tagline {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 30px;
-        }
-        
-        /* Questionário */
-        .quiz-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            margin: 30px 0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .quiz-step {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .quiz-step.active {
-            display: block;
-        }
-        
-        .quiz-question {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: var(--accent);
-        }
-        
-        .quiz-description {
-            font-size: 1rem;
-            opacity: 0.8;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .quiz-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        
-        .quiz-option {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .quiz-option:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--accent);
-        }
-        
-        .quiz-option.selected {
-            background: rgba(108, 99, 255, 0.2);
-            border-color: var(--primary);
-        }
-        
-        .quiz-option i {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-        
-        .quiz-navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        
-        .quiz-btn {
-            padding: 12px 25px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .quiz-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
-        .quiz-btn.prev {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Resultado */
-        .result-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            margin: 30px 0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .result-title {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--accent);
-        }
-        
-        .result-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px 0;
-            text-align: left;
-        }
-        
-        .result-features {
-            margin: 15px 0;
-        }
-        
-        .result-feature {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        
-        .result-feature i {
-            color: var(--accent);
-            margin-right: 10px;
-        }
-        
-        .result-price {
-            font-size: 2rem;
-            font-weight: 800;
-            margin: 20px 0;
-            color: var(--light);
-        }
-        
-        /* Presente e Roleta */
-        .gift-container {
-            margin: 30px 0;
-            text-align: center;
-            position: relative;
-        }
-        
-        .gift-box {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            width: 150px;
-            height: 150px;
-        }
-        
-        .gift-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
-        }
-        
-        .gift-box:hover {
-            transform: scale(1.05);
-        }
-        
-        .click-arrow {
-            position: absolute;
-            left: -70px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
+        .navbar {
             background: var(--primary);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #2d3748 100%);
+            color: white;
+            padding: 100px 0;
+        }
+        
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            border: 1px solid #4a5568;
+            margin-bottom: 30px;
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+        
+        .product-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            border-bottom: 1px solid #4a5568;
+        }
+        
+        .price-tag {
+            background: var(--accent);
+            color: white;
             padding: 8px 15px;
             border-radius: 20px;
-            animation: bounce 2s infinite;
+            font-weight: bold;
+            display: inline-block;
         }
         
-        .click-arrow::after {
-            content: '←';
-            margin-right: 5px;
+        .btn-primary {
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-weight: 600;
         }
         
-        .roulette-container {
-            display: none;
-            margin: 30px auto;
-            text-align: center;
-            max-width: 400px;
-            position: relative;
+        .btn-success {
+            background: linear-gradient(135deg, var(--success) 0%, #2f855a 100%);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-weight: 600;
         }
         
-        .roulette-wheel {
-            width: 300px;
-            height: 300px;
-            position: relative;
-            margin: 0 auto 20px;
-            border: 10px solid #ff4d4d;
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
             border-radius: 50%;
-            overflow: hidden;
-            transition: transform 4s cubic-bezier(0.1, 0.1, 0.1, 1);
-            transform: rotate(0deg);
-        }
-        
-        .roulette-section {
-            position: absolute;
-            width: 50%;
-            height: 50%;
-            transform-origin: bottom right;
-            left: 0;
-            top: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            font-size: 1.5rem;
-            color: white;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            margin: 0 auto 15px;
+            font-size: 28px;
+            color: var(--dark);
+            border: 2px solid #4a5568;
         }
         
-        .roulette-pointer {
+        .section-title {
+            color: var(--dark);
+            font-weight: 700;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
             position: absolute;
-            top: -20px;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-top: 30px solid #ff4d4d;
-            z-index: 10;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
         }
         
-        .spin-button {
-            padding: 15px 30px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+        .pix-badge {
+            background: linear-gradient(135deg, #32BCAD 0%, #00A86B 100%);
             color: white;
-            border: none;
-            border-radius: 50px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
             font-weight: 600;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 20px;
-        }
-        
-        .spin-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .discount-result {
-            display: none;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 20px;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .discount-amount {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #FFD700;
-            margin: 10px 0;
-        }
-        
-        .print-message {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #FFD700;
-            margin-top: 15px;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-        }
-        
-        .contact-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 30px;
-        }
-        
-        .contact-button {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            padding: 16px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
+            gap: 5px;
         }
         
-        .contact-button.whatsapp {
-            background: linear-gradient(135deg, #25D366, #128C7E);
+        .discount-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
             color: white;
-        }
-        
-        .contact-button.email {
-            background: linear-gradient(135deg, #36D1DC, #5B86E5);
-            color: white;
-        }
-        
-        .button-icon {
-            margin-right: 10px;
-            font-size: 1.2rem;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
         }
         
         footer {
+            background: var(--primary);
+            color: var(--dark);
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .payment-methods {
+            background: var(--secondary);
+            padding: 30px;
+            border-radius: 10px;
             text-align: center;
-            padding: 30px 20px;
-            margin-top: 40px;
-            background: rgba(26, 26, 46, 0.5);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .benefit-icon {
+            width: 30px;
+            margin-right: 10px;
+            color: var(--success);
+        }
+        
+        /* Carrinho Flutuante */
+        .floating-cart {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--primary);
+            border-radius: 50px;
+            padding: 15px 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cart-count {
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        /* Modal do Carrinho */
+        .cart-modal .modal-content {
+            background: var(--card-bg);
+            color: var(--dark);
+            border-radius: 15px;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #4a5568;
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .cart-item-details h6 {
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .cart-item-details p {
+            margin: 0;
+            font-size: 14px;
+            color: #a0aec0;
+        }
+        
+        .cart-item-price {
+            font-weight: 600;
+            color: var(--success);
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px solid #4a5568;
+        }
+        
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 18px;
         }
         
         /* Animações */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(-50%); }
-            40% { transform: translateY(-60%); }
-            60% { transform: translateY(-55%); }
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
         }
         
-        /* Responsividade */
-        @media (max-width: 600px) {
-            h1 {
+        /* Otimizações para Mobile */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 60px 0;
+            }
+            
+            .hero-section h1 {
                 font-size: 2rem;
             }
             
-            .quiz-options {
-                grid-template-columns: 1fr;
+            .product-card {
+                margin-bottom: 20px;
             }
             
-            .quiz-navigation {
-                flex-direction: column;
-                gap: 10px;
+            .floating-cart {
+                bottom: 10px;
+                right: 10px;
+                padding: 12px 15px;
             }
             
-            .quiz-btn {
-                width: 100%;
+            .cart-modal .modal-dialog {
+                margin: 10px;
             }
             
-            .click-arrow {
-                position: relative;
-                left: auto;
-                top: auto;
-                transform: none;
-                margin-top: 15px;
-                display: inline-block;
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 1.2rem;
             }
             
-            .click-arrow::after {
-                content: '↑';
-                margin-right: 0;
-                margin-left: 5px;
+            .hero-section h1 {
+                font-size: 1.8rem;
             }
             
-            .roulette-wheel {
-                width: 250px;
-                height: 250px;
+            .hero-section p.lead {
+                font-size: 1rem;
+            }
+            
+            .btn-lg {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+            
+            .product-image {
+                height: 150px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <i class="fas fa-presentation"></i>
-            </div>
-            <h1>Slides do Bueno</h1>
-            <p class="tagline">Encontre o plano perfeito para suas necessidades</p>
-        </header>
-        
-        <div class="quiz-container">
-            <!-- Passo 1: Quantidade de Slides -->
-            <div class="quiz-step active" id="step1">
-                <h2 class="quiz-question">Quantos slides você precisa?</h2>
-                <p class="quiz-description">Selecione a quantidade de slides que sua apresentação requer</p>
-                
-                <div class="quiz-options">
-                    <div class="quiz-option" data-value="15">
-                        <i class="fas fa-file-alt"></i>
-                        <h3>15 Slides</h3>
-                        <p>Ideal para apresentações curtas</p>
-                    </div>
-                    <div class="quiz-option" data-value="20">
-                        <i class="fas fa-file-alt"></i>
-                        <h3>20 Slides</h3>
-                        <p>Perfeito para apresentações médias</p>
-                    </div>
-                    <div class="quiz-option" data-value="30">
-                        <i class="fas fa-file-alt"></i>
-                        <h3>30 Slides</h3>
-                        <p>Excelente para apresentações completas</p>
-                    </div>
-                </div>
-                
-                <div class="quiz-navigation">
-                    <button class="quiz-btn prev" disabled>Anterior</button>
-                    <button class="quiz-btn next">Próxima</button>
-                </div>
-            </div>
-            
-            <!-- Passo 2: Animação -->
-            <div class="quiz-step" id="step2">
-                <h2 class="quiz-question">Você deseja com ou sem animação?</h2>
-                <p class="quiz-description">Escolhendo essa opção, você decide se nos seus slides haverá uma animação ou não. Animações tornam a apresentação mais dinâmica e engajadora.</p>
-                
-                <div class="quiz-options">
-                    <div class="quiz-option" data-value="sem">
-                        <i class="fas fa-times-circle"></i>
-                        <h3>Sem Animação</h3>
-                        <p>Slides estáticos e profissionais</p>
-                    </div>
-                    <div class="quiz-option" data-value="com">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Com Animação</h3>
-                        <p>Transições e efeitos especiais</p>
-                    </div>
-                </div>
-                
-                <div class="quiz-navigation">
-                    <button class="quiz-btn prev">Anterior</button>
-                    <button class="quiz-btn next">Próxima</button>
-                </div>
-            </div>
-            
-            <!-- Passo 3: Revisão -->
-            <div class="quiz-step" id="step3">
-                <h2 class="quiz-question">Você deseja fazer uma revisão antes de receber o produto?</h2>
-                <p class="quiz-description">Se marcar esta opção, poderá receber uma prévia do produto e opinar se está perfeito ou se precisa de alguma alteração. Garantia de satisfação total!</p>
-                
-                <div class="quiz-options">
-                    <div class="quiz-option" data-value="sem">
-                        <i class="fas fa-times-circle"></i>
-                        <h3>Sem Revisão</h3>
-                        <p>Receba o produto final diretamente</p>
-                    </div>
-                    <div class="quiz-option" data-value="com">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Com Revisão</h3>
-                        <p>Visualize e aprove antes do envio final</p>
-                    </div>
-                </div>
-                
-                <div class="quiz-navigation">
-                    <button class="quiz-btn prev">Anterior</button>
-                    <button class="quiz-btn next">Ver Resultado</button>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="#">
+                <i class="fas fa-crown me-2"></i>UpgradeStream
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link active" href="#home">Início</a>
+                    <a class="nav-link" href="#produtos">Produtos</a>
+                    <a class="nav-link" href="#como-funciona">Como Funciona</a>
+                    <a class="nav-link" href="#contato">Contato</a>
                 </div>
             </div>
         </div>
-        
-        <div class="result-container" id="resultContainer">
-            <h2 class="result-title">Plano Ideal para Você!</h2>
-            
-            <div class="result-card">
-                <h3 id="resultOption">Opção X: Y Slides</h3>
-                
-                <div class="result-features">
-                    <div class="result-feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span id="resultSlides">Y Slides profissionais</span>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section text-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 fade-in">
+                    <h1 class="display-4 fw-bold mb-4">Apps Premium por Preço Acessível</h1>
+                    <p class="lead mb-4">Spotify, YouTube Premium, Netflix e muito mais com até 70% de desconto. Pagamento rápido e seguro via PIX!</p>
+                    <div class="pix-badge mb-4">
+                        <i class="fas fa-bolt"></i> PAGAMENTO VIA PIX
                     </div>
-                    <div class="result-feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span id="resultAnimation">Com/Sem animação</span>
-                    </div>
-                    <div class="result-feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span id="resultRevision">Com/Sem revisão</span>
-                    </div>
+                    <br>
+                    <a href="#produtos" class="btn btn-success btn-lg me-3">Ver Planos</a>
+                    <a href="#como-funciona" class="btn btn-primary btn-lg">Como Funciona</a>
                 </div>
-                
-                <div class="result-price" id="resultPrice">R$ 0,00</div>
-                
-                <p>Este plano foi selecionado com base nas suas preferências e é perfeito para suas necessidades!</p>
-            </div>
-            
-            <!-- Presente com roleta -->
-            <div class="gift-container">
-                <div class="gift-box" id="giftBox">
-                    <img src="https://img.freepik.com/psd-gratuitas/design-de-caixa-de-presente-colorida-de-aniversario_23-2150318126.jpg" alt="Presente de desconto">
-                </div>
-                <div class="click-arrow">Clique para ganhar desconto!</div>
-            </div>
-            
-            <!-- Roleta de desconto -->
-            <div class="roulette-container" id="rouletteContainer">
-                <div class="roulette-pointer"></div>
-                <div class="roulette-wheel" id="rouletteWheel">
-                    <!-- As seções serão adicionadas via JavaScript -->
-                </div>
-                <button class="spin-button" id="spinButton">Girar Roleta</button>
-                
-                <div class="discount-result" id="discountResult">
-                    <h3>Parabéns!</h3>
-                    <div class="discount-amount" id="discountAmount">10%</div>
-                    <p>de desconto na sua primeira compra!</p>
-                    <div class="print-message">Tire um print para comprovar seu desconto!!!</div>
-                </div>
-            </div>
-            
-            <p>Entre em contato agora para finalizar seu pedido:</p>
-            
-            <div class="contact-buttons">
-                <a href="https://wa.me/5512997064160" class="contact-button whatsapp">
-                    <i class="fab fa-whatsapp button-icon"></i> WhatsApp: (12) 99706-4160
-                </a>
-                <a href="mailto:bdavi076@gmail.com" class="contact-button email">
-                    <i class="fas fa-envelope button-icon"></i> E-mail: bdavi076@gmail.com
-                </a>
             </div>
         </div>
-        
-        <footer>
-            <p>Os slides mais <strong>confiáveis</strong> e <strong>rápidos</strong> que você verá!</p>
-            <p class="copyright">© 2023 Slides do Bueno - Feito com <i class="fas fa-heart" style="color: #FF6584;"></i> para suas apresentações incríveis!</p>
-        </footer>
+    </section>
+
+    <!-- Products Section -->
+    <section id="produtos" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Nossos Planos em Destaque</h2>
+            <div class="row" id="products-grid">
+                <!-- Produtos serão carregados via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="como-funciona" class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="section-title text-center">Como Funciona</h2>
+            <div class="row text-center">
+                <div class="col-md-4 mb-4 fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h5>1. Escolha seu Plano</h5>
+                    <p>Selecione o serviço desejado e a duração do plano</p>
+                </div>
+                <div class="col-md-4 mb-4 fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <h5>2. Pague com PIX</h5>
+                    <p>Faça o pagamento de forma rápida e segura via PIX</p>
+                </div>
+                <div class="col-md-4 mb-4 fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h5>3. Receba o Acesso</h5>
+                    <p>Entrega instantânea das credenciais por email</p>
+                </div>
+            </div>
+            
+            <div class="payment-methods mt-5 fade-in">
+                <h4 class="mb-4">Pagamento Exclusivo via PIX</h4>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <p>Oferecemos pagamento exclusivamente via PIX para garantir transações mais rápidas, seguras e com menor custo. Após a confirmação do pagamento, você receberá instantaneamente o acesso ao serviço contratado.</p>
+                        <div class="benefit-item justify-content-center">
+                            <i class="fas fa-check-circle benefit-icon"></i>
+                            <span>Pagamento instantâneo</span>
+                        </div>
+                        <div class="benefit-item justify-content-center">
+                            <i class="fas fa-check-circle benefit-icon"></i>
+                            <span>Segurança garantida</span>
+                        </div>
+                        <div class="benefit-item justify-content-center">
+                            <i class="fas fa-check-circle benefit-icon"></i>
+                            <span>Sem taxas adicionais</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Fale Conosco</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card product-card">
+                        <div class="card-body p-4 text-center">
+                            <h4 class="mb-3">Precisa de Ajuda?</h4>
+                            <p class="mb-4">Estamos aqui para responder suas dúvidas e ajudar com qualquer problema.</p>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="feature-icon" style="width: 50px; height: 50px; font-size: 20px;">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <h6>Email</h6>
+                                    <p>contatoupgradestream@gmail.com</p>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="feature-icon" style="width: 50px; height: 50px; font-size: 20px;">
+                                        <i class="fas fa-comment-alt"></i>
+                                    </div>
+                                    <h6>WhatsApp</h6>
+                                    <p>(12) 99706-4160</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <h5><i class="fas fa-crown me-2"></i>UpgradeStream</h5>
+                    <p>Oferecemos os melhores preços para upgrades de aplicativos premium com entrega instantânea após confirmação do PIX.</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Links Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-light">Início</a></li>
+                        <li><a href="#produtos" class="text-light">Produtos</a></li>
+                        <li><a href="#como-funciona" class="text-light">Como Funciona</a></li>
+                        <li><a href="#contato" class="text-light">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Pagamento</h5>
+                    <div class="pix-badge">
+                        <i class="fas fa-bolt"></i> PIX
+                    </div>
+                    <p class="small mt-2">Pagamento 100% seguro via PIX</p>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4">
+            <div class="text-center">
+                <p class="small">&copy; 2023 UpgradeStream. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Carrinho Flutuante -->
+    <div class="floating-cart" data-bs-toggle="modal" data-bs-target="#cartModal">
+        <i class="fas fa-shopping-cart text-white"></i>
+        <div class="cart-count" id="cart-count">0</div>
+        <span class="text-white d-none d-md-inline">Ver Carrinho</span>
     </div>
 
+    <!-- Modal do Carrinho -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Meu Carrinho</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="cart-items">
+                        <!-- Itens do carrinho serão carregados aqui -->
+                    </div>
+                    <div class="cart-total">
+                        <span>Total:</span>
+                        <span id="cart-total-price">R$ 0,00</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continuar Comprando</button>
+                    <button type="button" class="btn btn-success" id="checkout-btn">Finalizar Compra com PIX</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Configuração das opções de preços CORRIGIDA
-            const pricingOptions = {
-                '15': {
-                    'sem-sem': { option: 'Opção 1', price: 'R$ 07,50', animation: 'Sem animação', revision: 'Sem revisão' },
-                    'sem-com': { option: 'Opção 2', price: 'R$ 12,50', animation: 'Sem animação', revision: 'Com revisão' },
-                    'com-sem': { option: 'Opção 3', price: 'R$ 12,50', animation: 'Com animação', revision: 'Sem revisão' },
-                    'com-com': { option: 'Opção 4', price: 'R$ 17,50', animation: 'Com animação', revision: 'Com revisão' }
-                },
-                '20': {
-                    'sem-sem': { option: 'Opção 5', price: 'R$ 10,00', animation: 'Sem animação', revision: 'Sem revisão' },
-                    'sem-com': { option: 'Opção 6', price: 'R$ 15,00', animation: 'Sem animação', revision: 'Com revisão' },
-                    'com-sem': { option: 'Opção 7', price: 'R$ 15,00', animation: 'Com animação', revision: 'Sem revisão' },
-                    'com-com': { option: 'Opção 8', price: 'R$ 20,00', animation: 'Com animação', revision: 'Com revisão' }
-                },
-                '30': {
-                    'sem-sem': { option: 'Opção 9', price: 'R$ 12,50', animation: 'Sem animação', revision: 'Sem revisão' },
-                    'sem-com': { option: 'Opção 10', price: 'R$ 17,50', animation: 'Sem animação', revision: 'Com revisão' },
-                    'com-sem': { option: 'Opção 11', price: 'R$ 17,50', animation: 'Com animação', revision: 'Sem revisão' },
-                    'com-com': { option: 'Opção 12', price: 'R$ 25,00', animation: 'Com animação', revision: 'Com revisão' }
+        // Dados dos produtos (exemplo)
+        const products = [
+            {
+                id: 1,
+                name: "Spotify Premium",
+                duration: "6 meses",
+                price: 29.90,
+                originalPrice: 89.70,
+                features: ["Sem anúncios", "Download ilimitado", "Qualidade máxima", "Suporte 24/7"],
+                icon: "fas fa-music",
+                image: "https://images.unsplash.com/photo-1611339555312-e607c8352fd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                discount: "67% OFF"
+            },
+            {
+                id: 2,
+                name: "YouTube Premium",
+                duration: "12 meses", 
+                price: 79.90,
+                originalPrice: 239.88,
+                features: ["YouTube sem ads", "YouTube Music", "Vídeos em segundo plano", "Downloads"],
+                icon: "fas fa-play-circle",
+                image: "https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                discount: "67% OFF"
+            },
+            {
+                id: 3,
+                name: "Netflix Premium",
+                duration: "6 meses",
+                price: 89.90,
+                originalPrice: 179.40,
+                features: ["4 telas simultâneas", "Qualidade 4K", "Download ilimitado", "Sem anúncios"],
+                icon: "fas fa-film",
+                image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                discount: "50% OFF"
+            }
+        ];
+
+        // Carrinho
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Função para carregar produtos
+        function loadProducts() {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = products.map(product => `
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="product-card">
+                        <div class="discount-badge">${product.discount}</div>
+                        <div class="product-image" style="background-image: url('${product.image}')"></div>
+                        <div class="p-4 text-center">
+                            <div class="feature-icon mb-3" style="width: 50px; height: 50px; font-size: 20px;">
+                                <i class="${product.icon}"></i>
+                            </div>
+                            <h4>${product.name}</h4>
+                            <p class="text-light">${product.duration}</p>
+                            <div class="price-tag mb-2">
+                                R$ ${product.price.toFixed(2)}
+                            </div>
+                            <p class="text-muted"><s>De R$ ${product.originalPrice.toFixed(2)}</s></p>
+                            <ul class="list-unstyled mb-4">
+                                ${product.features.map(feature => `<li class="mb-2"><i class="fas fa-check text-success me-2"></i>${feature}</li>`).join('')}
+                            </ul>
+                            <button class="btn btn-success w-100" onclick="addToCart(${product.id})">
+                                <i class="fas fa-shopping-cart me-2"></i>Adicionar ao Carrinho
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Adicionar produto ao carrinho
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({...product, quantity: 1});
+            }
+            
+            updateCart();
+            showCartNotification(product.name);
+        }
+
+        // Remover item do carrinho
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+        }
+
+        // Atualizar quantidade do item
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCart();
                 }
-            };
-            
-            // Elementos do DOM
-            const quizSteps = document.querySelectorAll('.quiz-step');
-            const quizOptions = document.querySelectorAll('.quiz-option');
-            const prevButtons = document.querySelectorAll('.quiz-btn.prev');
-            const nextButtons = document.querySelectorAll('.quiz-btn.next');
-            const resultContainer = document.getElementById('resultContainer');
-            const giftBox = document.getElementById('giftBox');
-            const rouletteContainer = document.getElementById('rouletteContainer');
-            const rouletteWheel = document.getElementById('rouletteWheel');
-            const spinButton = document.getElementById('spinButton');
-            const discountResult = document.getElementById('discountResult');
-            const discountAmount = document.getElementById('discountAmount');
-            
-            // Respostas do usuário
-            let userAnswers = {
-                slides: null,
-                animation: null,
-                revision: null
-            };
-            
-            // Configurar eventos para as opções do questionário
-            quizOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    const step = this.closest('.quiz-step');
-                    const options = step.querySelectorAll('.quiz-option');
-                    
-                    // Remover seleção anterior
-                    options.forEach(opt => opt.classList.remove('selected'));
-                    
-                    // Adicionar seleção atual
-                    this.classList.add('selected');
-                    
-                    // Habilitar botão próximo
-                    const nextBtn = step.querySelector('.quiz-btn.next');
-                    nextBtn.disabled = false;
-                });
-            });
-            
-            // Configurar eventos para os botões de navegação
-            nextButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const currentStep = this.closest('.quiz-step');
-                    const currentStepId = currentStep.id;
-                    const selectedOption = currentStep.querySelector('.quiz-option.selected');
-                    
-                    if (selectedOption) {
-                        // Salvar resposta
-                        if (currentStepId === 'step1') {
-                            userAnswers.slides = selectedOption.dataset.value;
-                        } else if (currentStepId === 'step2') {
-                            userAnswers.animation = selectedOption.dataset.value;
-                        } else if (currentStepId === 'step3') {
-                            userAnswers.revision = selectedOption.dataset.value;
-                        }
-                        
-                        // Avançar para o próximo passo ou mostrar resultado
-                        if (currentStepId === 'step3') {
-                            showResult();
-                        } else {
-                            const nextStep = currentStep.nextElementSibling;
-                            currentStep.classList.remove('active');
-                            nextStep.classList.add('active');
-                        }
-                    }
-                });
-            });
-            
-            prevButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const currentStep = this.closest('.quiz-step');
-                    const prevStep = currentStep.previousElementSibling;
-                    
-                    if (prevStep) {
-                        currentStep.classList.remove('active');
-                        prevStep.classList.add('active');
-                    }
-                });
-            });
-            
-            // Mostrar resultado baseado nas respostas
-            function showResult() {
-                const { slides, animation, revision } = userAnswers;
-                const optionKey = `${animation}-${revision}`;
-                const selectedOption = pricingOptions[slides][optionKey];
-                
-                // Atualizar informações no resultado
-                document.getElementById('resultOption').textContent = `${selectedOption.option}: ${slides} Slides`;
-                document.getElementById('resultSlides').textContent = `${slides} Slides profissionais`;
-                document.getElementById('resultAnimation').textContent = selectedOption.animation;
-                document.getElementById('resultRevision').textContent = selectedOption.revision;
-                document.getElementById('resultPrice').textContent = selectedOption.price;
-                
-                // Mostrar container de resultado
-                document.querySelector('.quiz-container').style.display = 'none';
-                resultContainer.style.display = 'block';
-                
-                // Rolar suavemente para o resultado
-                resultContainer.scrollIntoView({ behavior: 'smooth' });
             }
+        }
+
+        // Atualizar exibição do carrinho
+        function updateCart() {
+            // Salvar carrinho no localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
             
-            // Configurar a roleta de desconto
-            function initRoulette() {
-                // Criar seções da roleta (apenas de 10% a 30%)
-                const sections = [
-                    { discount: '10%', color: '#FF6B6B', probability: 40 },
-                    { discount: '15%', color: '#FF8E53', probability: 30 },
-                    { discount: '20%', color: '#36D1DC', probability: 20 },
-                    { discount: '25%', color: '#5B86E5', probability: 7 },
-                    { discount: '30%', color: '#9C27B0', probability: 3 }
-                ];
+            // Atualizar contador
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = totalItems;
+            
+            // Atualizar modal do carrinho
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotalPrice = document.getElementById('cart-total-price');
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-center">Seu carrinho está vazio</p>';
+                cartTotalPrice.textContent = 'R$ 0,00';
+                document.getElementById('checkout-btn').disabled = true;
+            } else {
+                cartItemsContainer.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-image" style="background-image: url('${item.image}')"></div>
+                            <div class="cart-item-details">
+                                <h6>${item.name}</h6>
+                                <p>${item.duration}</p>
+                                <div class="d-flex align-items-center mt-2">
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${item.id}, -1)">-</button>
+                                    <span class="mx-2">${item.quantity}</span>
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${item.id}, 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <span class="cart-item-price me-3">R$ ${(item.price * item.quantity).toFixed(2)}</span>
+                            <button class="remove-item" onclick="removeFromCart(${item.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
                 
-                let currentAngle = 0;
-                
-                // Adicionar seções à roleta
-                sections.forEach((section, index) => {
-                    const sectionEl = document.createElement('div');
-                    sectionEl.className = 'roulette-section';
-                    sectionEl.style.backgroundColor = section.color;
-                    sectionEl.style.transform = `rotate(${index * 72}deg)`;
-                    sectionEl.innerHTML = section.discount;
-                    rouletteWheel.appendChild(sectionEl);
-                });
-                
-                // Evento para abrir a roleta ao clicar no presente
-                giftBox.addEventListener('click', function() {
-                    rouletteContainer.style.display = 'block';
-                    this.style.display = 'none';
-                    document.querySelector('.click-arrow').style.display = 'none';
-                });
-                
-                // Evento para girar a roleta
-                spinButton.addEventListener('click', function() {
-                    // Desabilitar o botão durante a rotação
-                    spinButton.disabled = true;
-                    
-                    // Escolher um desconto aleatório com probabilidades diferentes
-                    let random = Math.random() * 100;
-                    let chosenIndex = 0;
-                    let probabilitySum = 0;
-                    
-                    for (let i = 0; i < sections.length; i++) {
-                        probabilitySum += sections[i].probability;
-                        if (random <= probabilitySum) {
-                            chosenIndex = i;
-                            break;
-                        }
-                    }
-                    
-                    // Calcular o ângulo de parada (cada seção tem 72 graus - 360/5)
-                    const targetAngle = 360 - (chosenIndex * 72) + 360 * 5; // 5 voltas completas + posição
-                    
-                    // Girar a roleta
-                    rouletteWheel.style.transition = 'transform 4s cubic-bezier(0.1, 0.1, 0.1, 1)';
-                    rouletteWheel.style.transform = `rotate(${targetAngle}deg)`;
-                    
-                    // Mostrar o resultado após a rotação
-                    setTimeout(function() {
-                        discountAmount.textContent = sections[chosenIndex].discount;
-                        discountResult.style.display = 'block';
-                        spinButton.style.display = 'none';
-                    }, 4200);
-                });
+                const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                cartTotalPrice.textContent = `R$ ${totalPrice.toFixed(2)}`;
+                document.getElementById('checkout-btn').disabled = false;
             }
+        }
+
+        // Mostrar notificação de produto adicionado
+        function showCartNotification(productName) {
+            // Criar notificação
+            const notification = document.createElement('div');
+            notification.className = 'alert alert-success position-fixed';
+            notification.style.top = '20px';
+            notification.style.right = '20px';
+            notification.style.zIndex = '1050';
+            notification.innerHTML = `
+                <i class="fas fa-check-circle me-2"></i>
+                ${productName} adicionado ao carrinho!
+            `;
             
-            // Inicializar a roleta quando a página carregar
-            initRoulette();
+            document.body.appendChild(notification);
+            
+            // Remover após 3 segundos
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Finalizar compra
+        function checkout() {
+            if (cart.length === 0) return;
+            
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const productNames = cart.map(item => `${item.name} (${item.duration})`).join(', ');
+            
+            // Mensagem para WhatsApp
+            const message = `Olá! Gostaria de comprar os seguintes produtos:\n${productNames}\n\nTotal: R$ ${totalPrice.toFixed(2)}\n\nForma de pagamento: PIX`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/5512997064160?text=${encodedMessage}`;
+            
+            // Abrir WhatsApp
+            window.open(whatsappUrl, '_blank');
+            
+            // Limpar carrinho após finalizar compra
+            cart = [];
+            updateCart();
+            
+            // Fechar modal
+            const cartModal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
+            cartModal.hide();
+        }
+
+        // Animações de scroll
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    el.classList.add('active');
+                }
+            });
+        }
+
+        // Carregar produtos quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProducts();
+            updateCart();
+            
+            // Configurar botão de finalizar compra
+            document.getElementById('checkout-btn').addEventListener('click', checkout);
+            
+            // Animações de scroll
+            window.addEventListener('scroll', handleScrollAnimations);
+            handleScrollAnimations();
+            
+            // Smooth scrolling para links internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
         });
     </script>
 </body>
